@@ -3,7 +3,7 @@ import Header from '../components/Header/Header';
 import { Outlet } from 'react-router';
 import Footer from '../components/Footer';
 
-const MainLayout = () => {
+const AuthLayout = () => {
     return (
         <div>
             <Header></Header>
@@ -15,4 +15,4 @@ const MainLayout = () => {
     );
 };
 
-export default MainLayout;
+export default AuthLayout;
