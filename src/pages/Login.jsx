@@ -6,8 +6,8 @@ import { Link } from "react-router";
 export default function Login() {
     return (
         <div className="flex my-20 items-center justify-center bg-gray-50 px-4">
-            <div className="w-full px-15 py-20 max-w-lg bg-white border border-gray-200 rounded-lg">
-                <h2 className="text-2xl font-semibold text-center mb-6">Log in to Upwork</h2>
+            <div className="w-full px-15 py-10 max-w-lg bg-white border border-gray-200 rounded-lg">
+                <h2 className="text-2xl font-semibold text-center pb-10">Log in to Upwork</h2>
 
                 <div className="relative mb-4">
                     <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
@@ -45,8 +45,8 @@ export default function Login() {
                     Continue with Google
                 </button>
 
-                <div className="text-center text-sm text-gray-600 mt-20">
-                    <div className="flex items-center justify-center mb-3">
+                <div className="text-center text-sm text-gray-600">
+                    <div className="flex items-center justify-center mb-8">
                         <hr className="w-1/4 border-gray-300" />
                         <span className="mx-1">Don't have an account?</span>
                         <hr className="w-1/4 border-gray-300" />

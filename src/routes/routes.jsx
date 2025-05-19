@@ -6,6 +6,7 @@ import BrowseTask from "../pages/BrowseTask"
 import MyPostedTasks from "../pages/MyPostedTask"
 import Login from "../pages/Login"
 import SignUp from "../pages/SignUp"
+import ErrorPage from "../pages/ErrorPage"
 import AuthLayout from "../layouts/AuthLayout";
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
                 Component: SignUp
             }
         ]
+    },
+    {
+        path:'*',
+        Component: ErrorPage
     }
 ])
 
