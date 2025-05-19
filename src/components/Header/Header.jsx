@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { use } from 'react';
 import { NavLink } from 'react-router';
+import AuthContext from '../../Context/AuthContext';
 
 const Header = () => {
+
+    const { currentUser, logOut } = use(AuthContext);
+    const name = currentUser?.displayName;
+    const profileImg = currentUser?.photoURL;
+
+    const handelLogOut = () => {
+        logOut();
+    }
+
     return (
         <div>
             <nav>
@@ -31,8 +41,45 @@ const Header = () => {
                         </ul>
                     </div>
                     <div className="navbar-end gap-3">
-                        <NavLink to='/auth/login' className="">Log in</NavLink>
-                        <NavLink to='/auth/sign-up' className="btn font-normal bg-green-600 border-0 rounded-xl text-white">Sign Up</NavLink>
+
+                        {
+                            currentUser && <div className="relative group dropdown-end">
+                                <div
+                                    tabIndex={0} role="button"
+                                    className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img
+                                            alt="Tailwind CSS Navbar component"
+                                            src={`${profileImg}`}
+                                        />
+                                    </div>
+                                </div>
+                                <ul
+                                    className="menu menu-sm absolute right-0  w-52 p-2 shadow bg-base-100 rounded-box z-10 
+                                    opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto 
+                                    transition-opacity duration-1000">
+                                    <li>
+                                        <a className="justify-between">
+                                            Name
+                                            <span className="badge">{name}</span>
+                                        </a>
+                                    </li>
+                                    <li className='btn' onClick={handelLogOut}>Logout</li>
+                                </ul>
+                            </div>
+                        }
+
+
+                        {
+                            currentUser ? '' : <>
+                                <NavLink to='/auth/login' className="">Log in</NavLink>
+                                <NavLink to='/auth/sign-up' className="btn font-normal bg-green-600 border-0 rounded-xl text-white">Sign Up</NavLink>
+                            </>
+                        }
+
+
+
+
                     </div>
                 </div>
             </nav>

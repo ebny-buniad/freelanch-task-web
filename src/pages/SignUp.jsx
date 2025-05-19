@@ -1,8 +1,66 @@
-import React from 'react';
+import React, { use, useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import AuthContext from '../Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
+    const { createUser, signUpWithGoogle } = use(AuthContext);
+
+    const [passwordError, setPasswordError] = useState(false);
+    const navigate = useNavigate();
+
+
+
+    const handelSignUpGoogle = () => {
+        signUpWithGoogle()
+            .then(result => {
+                console.log(result)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+
+
+    const handelSignUp = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form)
+        const { email, password, ...userInfo } = Object.fromEntries(formData);
+
+        const passwordRegex = /(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+        if (passwordRegex.test(password) === false) {
+            return setPasswordError('worng password')
+        }
+
+        createUser(email, password)
+            .then((result) => {
+                console.log(result)
+                setPasswordError('')
+                Swal.fire({
+                    position: "enter center",
+                    icon: "success",
+                    title: "Your account create successfully!",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                setTimeout(() => {
+                    navigate('/')
+                    form.reset();
+                }, 2000)
+
+            })
+            .catch((error) => {
+                setPasswordError(error);
+            })
+
+    }
+
+
+
+
     return (
         <div className=" bg-gray-50 flex flex-col items-center justify-center p-4">
             <div className="bg-white p-8 rounded-lg border border-gray-200 w-full max-w-xl">
@@ -11,7 +69,7 @@ const SignUp = () => {
                 </h1>
 
                 <div className="space-y-4">
-                    <button className="w-full flex  items-center justify-center gap-2 border border-gray-200  py-3 rounded-full cursor-pointer">
+                    <button onClick={handelSignUpGoogle} className="w-full flex  items-center justify-center gap-2 border border-gray-200  py-3 rounded-full cursor-pointer">
                         <FcGoogle className="text-xl" />
                         Continue with Google
                     </button>
@@ -24,12 +82,13 @@ const SignUp = () => {
                         </div>
                     </div>
 
-                    <form className="space-y-4">
+                    <form onSubmit={handelSignUp} className="space-y-4 text-xs">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">
                                 First name
                             </label>
                             <input
+                                name='name'
                                 type="text"
                                 className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-0 focus:ring-.5  focus:border-green-600"
                             />
@@ -40,6 +99,7 @@ const SignUp = () => {
                                 Email
                             </label>
                             <input
+                                name='email'
                                 type="email"
                                 className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-0 focus:ring-.5  focus:border-green-600"
                             />
@@ -49,6 +109,7 @@ const SignUp = () => {
                                 Photo URL
                             </label>
                             <input
+                                name='photo'
                                 type="text"
                                 className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-0 focus:ring-.5  focus:border-green-600"
                             />
@@ -59,9 +120,20 @@ const SignUp = () => {
                                 Password
                             </label>
                             <input
+                                name='password'
                                 type="password"
                                 className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-0 focus:ring-.5  focus:border-green-600"
                             />
+                        </div>
+                        <div>
+                            {
+                                passwordError ? <>
+                                    <p className='text-red-400 text-xs'>Must have an Uppercase letter in the password <br />
+                                        Must have a Lowercase letter in the password <br />
+                                        Length must be at least 6 characters <br />
+                                    </p>
+                                </> : ''
+                            }
                         </div>
 
 
