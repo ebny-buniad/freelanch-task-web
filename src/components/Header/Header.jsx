@@ -4,9 +4,9 @@ import AuthContext from '../../Context/AuthContext';
 
 const Header = () => {
 
-    const { currentUser, logOut } = use(AuthContext);
-    const name = currentUser?.displayName;
-    const profileImg = currentUser?.photoURL;
+    const { googleUser, logOut } = use(AuthContext);
+    const name = googleUser?.displayName;
+    const profileImg = googleUser?.photoURL;
 
     const handelLogOut = () => {
         logOut();
@@ -43,42 +43,38 @@ const Header = () => {
                     <div className="navbar-end gap-3">
 
                         {
-                            currentUser && <div className="relative group dropdown-end">
-                                <div
-                                    tabIndex={0} role="button"
-                                    className="btn btn-ghost btn-circle avatar">
-                                    <div className="w-10 rounded-full">
-                                        <img
-                                            alt="Tailwind CSS Navbar component"
-                                            src={`${profileImg}`}
-                                        />
+                            googleUser && <>
+                                <div className="flex gap-2">
+                                    <div className="dropdown dropdown-end">
+                                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                            <div className="w-10 rounded-full">
+                                                <img
+                                                    alt="User"
+                                                    src={`${profileImg}`} />
+                                            </div>
+                                        </div>
+                                        <ul
+                                            tabIndex={0}
+                                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                                            <li>
+                                                <a className="justify-between">
+                                                    Profile
+                                                    <span className="badge">{name}</span>
+                                                </a>
+                                            </li>
+                                            <li className='btn' onClick={handelLogOut}>Logout</li>
+                                        </ul>
                                     </div>
                                 </div>
-                                <ul
-                                    className="menu menu-sm absolute right-0  w-52 p-2 shadow bg-base-100 rounded-box z-10 
-                                    opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto 
-                                    transition-opacity duration-1000">
-                                    <li>
-                                        <a className="justify-between">
-                                            Name
-                                            <span className="badge">{name}</span>
-                                        </a>
-                                    </li>
-                                    <li className='btn' onClick={handelLogOut}>Logout</li>
-                                </ul>
-                            </div>
+                            </>
                         }
 
-
                         {
-                            currentUser ? '' : <>
+                            googleUser ? '' : <>
                                 <NavLink to='/auth/login' className="">Log in</NavLink>
                                 <NavLink to='/auth/sign-up' className="btn font-normal bg-green-600 border-0 rounded-xl text-white">Sign Up</NavLink>
                             </>
                         }
-
-
-
 
                     </div>
                 </div>

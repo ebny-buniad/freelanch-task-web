@@ -6,7 +6,7 @@ import { auth } from '../../firebase.init';
 
 const AuthProvider = ({ children }) => {
 
-    const [currentUser, setCurrentUser] = useState(null)
+    const [googleUser, setGoogleUser] = useState(null)
 
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
 
-            setCurrentUser(user);
+            setGoogleUser(user);
 
             return () => {
                 unsubscribe();
@@ -44,13 +44,10 @@ const AuthProvider = ({ children }) => {
     const contextValus = {
         createUser,
         loginUser,
-        currentUser,
+        googleUser,
         signUpWithGoogle,
         logOut,
     }
-
-
-
 
 
     return <AuthContext value={contextValus}>

@@ -5,7 +5,6 @@ import Header from '../components/Header/Header';
 const ErrorPage = () => {
     return (
         <div>
-            <Header></Header>
             <div className='flex flex-col items-center justify-center min-h-[calc(100vh-65px)]'>
                 <img className='w-60' src="https://www.upwork.com/static/ui-images/1.0.4/air3/svg/illustrations/alien.svg" alt="" />
                 <h2 className='py-5 text-4xl'>Looking for something?</h2>

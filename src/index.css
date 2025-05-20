@@ -5,3 +5,19 @@
 * {
   font-family: "Poppins", sans-serif;
 }
+
+#hero-bg{
+  background-image: url('https://i.postimg.cc/vB1C5YqM/fernando-hernandez-l-Vu-V7-Acf-Or-Y-unsplash.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 30px;
+}
+
+.button{
+background: rgba(255, 255, 255, 0.12);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.5px);
+-webkit-backdrop-filter: blur(3.5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
