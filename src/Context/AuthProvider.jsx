@@ -41,8 +41,8 @@ const AuthProvider = ({ children }) => {
     }
 
 
-    const [regUser, setRegUser] = useState('')
-    console.log(regUser.name)
+    const [regUser, setRegUser] = useState(null)
+    // console.log(regUser)
 
 
 

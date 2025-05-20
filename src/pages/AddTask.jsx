@@ -1,21 +1,77 @@
-import React, { use } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import AuthContext from '../Context/AuthContext';
+import Swal from 'sweetalert2';
+import { useLoaderData, useNavigate } from 'react-router';
 
 const AddTask = () => {
+    const { regUser, googleUser } = use(AuthContext);
+    const [currentUser, setCurrentUser] = useState(null);
+    const navigate = useNavigate()
 
-    const {regUser} = use(AuthContext);
+    const allUsersData = useLoaderData();
+
+    // console.log('Current User is :', regUser)
+
+
+    useEffect(() => {
+        const myData = allUsersData.find(user => user.email === regUser);
+        if (myData) {
+            setCurrentUser(myData);
+        }
+    }, [allUsersData, regUser]);
+
+    // console.log('Current User Data',currentUser)
+    // console.log('Current User Data',currentUser)
+
+
+    const handelAddTask = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const title = form.title.value;
+        const category = form.category.value;
+        const description = form.description.value;
+        const deadline = form.deadline.value;
+        const budget = form.budget.value;
+        const email = form.email.value;
+        const name = form.name.value;
+
+        const taskDetails = { title, category, description, deadline, budget, email, name };
+        console.log(taskDetails);
+
+        fetch('http://localhost:3000/tasks', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(taskDetails)
+        })
+            .then(res => res.json())
+            .then(() => {
+                Swal.fire({
+                    position: "enter center",
+                    icon: "success",
+                    title: "Added task successfully!",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                setTimeout(() => {
+                    navigate('/')
+                }, 2000);
+            })
+
+    }
 
     return (
         <div className='lg:w-9/12 mx-auto'>
             <h2 className='text-2xl font-semibold text-gray-500 my-10'>Let's add a task</h2>
 
-            <form className="space-y-3 mb-10">
+            <form onSubmit={handelAddTask} className="space-y-3 mb-10">
                 <div>
                     <label className="block font-medium mb-1">Task Title</label>
                     <input
                         type="text"
                         name="title"
-                        
+
                         className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-green-500"
                     />
                 </div>
@@ -24,7 +80,6 @@ const AddTask = () => {
                     <label className="block font-medium mb-1">Category</label>
                     <select
                         name="category"
-                        
                         className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-green-500"
                     >
                         <option value="">Select Category</option>
@@ -40,7 +95,7 @@ const AddTask = () => {
                     <textarea
                         name="description"
                         rows="3"
-                        
+
                         className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-green-500"
                     ></textarea>
                 </div>
@@ -50,7 +105,6 @@ const AddTask = () => {
                     <input
                         type="date"
                         name="deadline"
-                        
                         className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-green-500"
                     />
                 </div>
@@ -70,7 +124,8 @@ const AddTask = () => {
                     <label className="block font-medium mb-1">User Email</label>
                     <input
                         type="email"
-                        value={regUser.email}
+                        name='email'
+                        value={googleUser?.email}
                         readOnly
                         className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-green-500"
                     />
@@ -79,8 +134,9 @@ const AddTask = () => {
                 <div>
                     <label className="block font-medium mb-1">User Name</label>
                     <input
+                        name='name'
                         type="text"
-                        value={regUser.name}
+                        value={googleUser?.displayName}
                         readOnly
                         className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-green-500"
                     />

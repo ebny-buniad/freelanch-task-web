@@ -19,35 +19,37 @@ const router = createBrowserRouter([
                 Component: Home
             },
             {
-                path:'add-task',
-                Component: AddTask
+                path: 'add-task',
+                Component: AddTask,
+                loader: () => fetch('http://localhost:3000/users')
             },
             {
-                path:'browse-task',
-                Component: BrowseTask
+                path: 'browse-task',
+                Component: BrowseTask,
+                loader: () => fetch('http://localhost:3000/tasks')
             },
             {
-                path:'my-posted-task',
+                path: 'my-posted-task',
                 Component: MyPostedTasks
             }
         ]
     },
     {
-        path:"/auth",
+        path: "/auth",
         Component: AuthLayout,
-        children:[
+        children: [
             {
-                path:'login',
+                path: 'login',
                 Component: Login
             },
             {
-                path:'sign-up',
+                path: 'sign-up',
                 Component: SignUp
             }
         ]
     },
     {
-        path:'*',
+        path: '*',
         Component: ErrorPage
     }
 ])

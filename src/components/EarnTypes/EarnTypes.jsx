@@ -40,7 +40,7 @@ const EarnTypes = () => {
 
             <div>
                 <h3 className='text-3xl font-semibold py-10'>Our support</h3>
-                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                <div className='grid md:grid-cols-2 xl:grid-cols-3 gap-5'>
                     <div className='flex gap-4 p-10 items-center'>
                         <img src="https://cdn.prod.website-files.com/603fea6471d9d8559d077603/662e95a9c221d8b56973cb9f_overview.svg" alt="" />
                         <div>

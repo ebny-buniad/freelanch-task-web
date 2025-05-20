@@ -13,8 +13,17 @@ const SignUp = () => {
 
     const handelSignUpGoogle = () => {
         signUpWithGoogle()
-            .then(result => {
-                console.log(result)
+            .then(() => {
+                Swal.fire({
+                    position: "enter center",
+                    icon: "success",
+                    title: "Your account create successfully!",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                setTimeout(() => {
+                    navigate('/')
+                }, 2000);
             })
             .catch((error) => {
                 console.log(error)
@@ -28,8 +37,8 @@ const SignUp = () => {
         const formData = new FormData(form)
         const { email, password, ...userInfo } = Object.fromEntries(formData);
 
-        const reg_user = {email, ...userInfo}
-        setRegUser(reg_user)
+        // const reg_user = { email, ...userInfo }
+        setRegUser(email)
 
 
         const passwordRegex = /(?=.*[a-z])(?=.*[A-Z]).{6,}/;
