@@ -5,11 +5,10 @@ import AuthContext from '../Context/AuthContext';
 import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const { createUser, signUpWithGoogle } = use(AuthContext);
+    const { createUser, signUpWithGoogle, setRegUser } = use(AuthContext);
 
     const [passwordError, setPasswordError] = useState(false);
     const navigate = useNavigate();
-
 
 
     const handelSignUpGoogle = () => {
@@ -23,12 +22,15 @@ const SignUp = () => {
     }
 
 
-
     const handelSignUp = (e) => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form)
         const { email, password, ...userInfo } = Object.fromEntries(formData);
+
+        const reg_user = {email, ...userInfo}
+        setRegUser(reg_user)
+
 
         const passwordRegex = /(?=.*[a-z])(?=.*[A-Z]).{6,}/;
         if (passwordRegex.test(password) === false) {
@@ -36,20 +38,35 @@ const SignUp = () => {
         }
 
         createUser(email, password)
-            .then((result) => {
-                console.log(result)
-                setPasswordError('')
-                Swal.fire({
-                    position: "enter center",
-                    icon: "success",
-                    title: "Your account create successfully!",
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-                setTimeout(() => {
-                    navigate('/')
-                    form.reset();
-                }, 2000)
+            .then(() => {
+                const userData = { email, ...userInfo }
+
+
+                // Send User DB
+
+                fetch('http://localhost:3000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        setPasswordError('')
+                        Swal.fire({
+                            position: "enter center",
+                            icon: "success",
+                            title: "Your account create successfully!",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                        setTimeout(() => {
+                            navigate('/')
+                            form.reset();
+                        }, 2000);
+                        console.log(data)
+                    })
 
             })
             .catch((error) => {

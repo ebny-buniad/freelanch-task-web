@@ -8,7 +8,7 @@ const Hero = () => {
     return (
         <div>
             <div id='hero-bg' className='mt-6 text-white'>
-                <div className='md:grid grid-cols-2 h-[700px] items-center'>
+                <div className='grid xl:grid-cols-2 h-[700px] items-center'>
                     <div className='col-span-1 p-10'>
                         <h1 className='text-5xl font-semibold leading-13 mb-5'>
                             Connecting clients in need to freelancers who deliver{' '}

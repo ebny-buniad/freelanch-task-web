@@ -41,36 +41,36 @@ const EarnTypes = () => {
             <div>
                 <h3 className='text-3xl font-semibold py-10'>Our support</h3>
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                    <div className='flex gap-4 p-10'>
+                    <div className='flex gap-4 p-10 items-center'>
                         <img src="https://cdn.prod.website-files.com/603fea6471d9d8559d077603/662e95a9c221d8b56973cb9f_overview.svg" alt="" />
                         <div>
                             <h4 className='text-xl'>Client reviews</h4>
                             <p className='text-gray-400'>Read client details and feedback from professionals like you.</p>
                         </div>
                     </div>
-                    <div className='flex gap-4 p-10'>
+                    <div className='flex gap-4 p-10 items-center'>
                         <img src="https://cdn.prod.website-files.com/603fea6471d9d8559d077603/662e9675f8ac0adbf8832c42_payment-funded.svg" alt="" />
                         <div>
                             <h4 className='text-xl'>Protected payments</h4>
                             <p className='text-gray-400'>Get paid the way you want, secure and fully protected.</p>
                         </div>
                     </div>
-                    <div className='flex gap-4 p-10'>
+                    <div className='flex gap-4 p-10 items-center'>
                         <img src="https://cdn.prod.website-files.com/603fea6471d9d8559d077603/662e9675c0540ad7e44f747a_message-question.svg" alt="" />
                         <div>
                             <h4 className='text-xl'>Answers to questions</h4>
                             <p className='text-gray-400'>Everything you need in our help center, resources, and community.</p>
                         </div>
                     </div>
-                    <div className='flex gap-4 p-10'>
+                    <div className='flex gap-4 p-10 items-center'>
                         <img src="https://cdn.prod.website-files.com/603fea6471d9d8559d077603/662e96755f4c3853d183647d_job-complete.svg" alt="" />
                         <div>
                             <h4 className='text-xl'>Trusted jobs</h4>
                             <p className='text-gray-400'>We use various tools to detect and reduce fraud with a dedicated team 24/7.</p>
                         </div>
                     </div>
-                    <div className='flex gap-4 p-10'>
-                        <img src="https://cdn.prod.website-files.com/603fea6471d9d8559d077603/662e96756f12f5305e1adae7_disputes.svg" alt="" />
+                    <div className='flex gap-4 p-10 items-center'>
+                        <img className='w-12' src="https://cdn.prod.website-files.com/603fea6471d9d8559d077603/662e96756f12f5305e1adae7_disputes.svg" alt="" />
                         <div>
                             <h4 className='text-xl'>Help with disputes</h4>
                             <p className='text-gray-400'>Read client details and feedback from professionals like you.</p>

@@ -41,12 +41,20 @@ const AuthProvider = ({ children }) => {
     }
 
 
+    const [regUser, setRegUser] = useState('')
+    console.log(regUser.name)
+
+
+
+
     const contextValus = {
         createUser,
         loginUser,
         googleUser,
         signUpWithGoogle,
         logOut,
+        regUser,
+        setRegUser,
     }
 
 
