@@ -45,8 +45,8 @@ const AuthProvider = ({ children }) => {
     // console.log(regUser)
 
     // Bid Counts
+    const [bidCount, setBidCount] = useState(0);
 
-    const [bidCount, setBidCount] = useState(0)
 
 
     const contextValus = {
@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => {
         regUser,
         setRegUser,
         bidCount,
-        setBidCount
+        setBidCount,
     }
 
 
