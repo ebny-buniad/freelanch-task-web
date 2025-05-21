@@ -8,6 +8,7 @@ import Login from "../pages/Login"
 import SignUp from "../pages/SignUp"
 import ErrorPage from "../pages/ErrorPage"
 import AuthLayout from "../layouts/AuthLayout";
+import DetailsTask from "../components/DetailsTask/DetailsTask";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,11 @@ const router = createBrowserRouter([
                 path: 'browse-task',
                 Component: BrowseTask,
                 loader: () => fetch('http://localhost:3000/tasks')
+            },
+            {
+                path: 'details-task/:id',
+                Component: DetailsTask,
+                loader: ({params}) => fetch(`http://localhost:3000/tasks/${params.id}`)
             },
             {
                 path: 'my-posted-task',
