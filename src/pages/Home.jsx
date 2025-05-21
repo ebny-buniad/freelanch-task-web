@@ -4,11 +4,15 @@ import FeaturedTasks from '../components/FeaturedTasks/FeaturedTasks';
 import EarnTypes from '../components/EarnTypes/EarnTypes';
 import { LuSunMoon } from "react-icons/lu";
 import { MdOutlineWbSunny } from "react-icons/md";
+import { useLoaderData } from 'react-router';
 
 
 
 
 const Home = () => {
+
+    const dedlineTasks = useLoaderData();
+    console.log(dedlineTasks)
 
     const [dark, setDark] = useState(false);
 
@@ -21,7 +25,12 @@ const Home = () => {
             <div className='lg:w-9/12 mx-auto'>
                 <button className='mt-5 button px-10 py-2 rounded-full cursor-pointer' onClick={() => changeMood()} >{dark ? <><MdOutlineWbSunny size={24} /></> : <><LuSunMoon size={24} /></>}</button>
                 <Hero></Hero>
-                <FeaturedTasks></FeaturedTasks>
+                <h3 className='text-2xl font-semibold py-5 text-green-600 underline'>Featured Tasks</h3>
+                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-3'>
+                    {
+                        dedlineTasks.map(task => <FeaturedTasks key={task._id} task={task}></FeaturedTasks>)
+                    }
+                </div>
                 <EarnTypes></EarnTypes>
             </div>
         </div>

@@ -37,8 +37,8 @@ const SignUp = () => {
         const formData = new FormData(form)
         const { email, password, ...userInfo } = Object.fromEntries(formData);
 
-        // const reg_user = { email, ...userInfo }
-        setRegUser(email)
+        const reg_user = { email, ...userInfo }
+        setRegUser(reg_user)
 
 
         const passwordRegex = /(?=.*[a-z])(?=.*[A-Z]).{6,}/;

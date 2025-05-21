@@ -47,7 +47,7 @@ const AuthProvider = ({ children }) => {
 
 
     const [regUser, setRegUser] = useState(null)
-    // console.log(regUser)
+    // console.log(regUser.name)
 
     // Bid Counts
     const [bidCount, setBidCount] = useState(0);

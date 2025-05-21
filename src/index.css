@@ -2,7 +2,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-* {
+body {
   font-family: "Poppins", sans-serif;
 }
 

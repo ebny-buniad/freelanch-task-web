@@ -10,6 +10,7 @@ import ErrorPage from "../pages/ErrorPage"
 import AuthLayout from "../layouts/AuthLayout";
 import DetailsTask from "../components/DetailsTask/DetailsTask";
 import PrivateRoutes from "./PrivateRoutes";
+import UpdateTask from "../components/UpdateTask/UpdateTask";
 
 const router = createBrowserRouter([
     {
@@ -18,7 +19,8 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                Component: Home
+                Component: Home,
+                loader: () => fetch('http://localhost:3000/dedline/tasks')
             },
             {
                 path: 'add-task',
@@ -37,7 +39,13 @@ const router = createBrowserRouter([
             },
             {
                 path: 'my-posted-task',
-                element: <PrivateRoutes><MyPostedTasks></MyPostedTasks></PrivateRoutes>
+                element: <PrivateRoutes><MyPostedTasks></MyPostedTasks></PrivateRoutes>,
+                loader: () => fetch('http://localhost:3000/tasks')
+            },
+            {
+                path: 'update-task/:id',
+                Component: UpdateTask,
+                loader: ({ params }) => fetch(`http://localhost:3000/tasks/${params.id}`)
             }
         ]
     },
