@@ -5,28 +5,32 @@ import { auth } from '../../firebase.init';
 
 
 const AuthProvider = ({ children }) => {
-
+    const [loading, setLoading] = useState(true)
     const [googleUser, setGoogleUser] = useState(null)
 
     const createUser = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const loginUser = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     // Google Sign Up and Sign in
     const provider = new GoogleAuthProvider();
     const signUpWithGoogle = () => {
+        setLoading(true)
         return signInWithPopup(auth, provider);
     }
 
     // Get Current Login User --
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-
             setGoogleUser(user);
+            setLoading(false)
+
 
             return () => {
                 unsubscribe();
@@ -37,6 +41,7 @@ const AuthProvider = ({ children }) => {
 
     // Logout Current User
     const logOut = () => {
+        setLoading(true)
         return signOut(auth)
     }
 
@@ -59,6 +64,7 @@ const AuthProvider = ({ children }) => {
         setRegUser,
         bidCount,
         setBidCount,
+        loading,
     }
 
 

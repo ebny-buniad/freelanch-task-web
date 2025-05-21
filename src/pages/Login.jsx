@@ -1,7 +1,7 @@
 import { FcGoogle } from "react-icons/fc";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { CiUser } from "react-icons/ci";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { use } from "react";
 import AuthContext from "../Context/AuthContext";
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,18 +11,21 @@ export default function Login() {
     const { loginUser, signUpWithGoogle } = use(AuthContext);
 
     const notify = () => toast.success("Login Succssful!");
+    const navigate = useNavigate()
 
 
     const handelLoginWithGoogle = () => {
         signUpWithGoogle()
-            .then(result => {
-                console.log(result)
+            .then(() => {
+                navigate(`${location.state ? location.state : '/'}`);
+                notify();
             })
             .catch((error) => {
                 console.log(error)
             })
     }
 
+    const location = useLocation();
 
     const handelLogin = (e) => {
         e.preventDefault();
@@ -31,8 +34,9 @@ export default function Login() {
         const password = form.password.value;
 
         loginUser(email, password)
-            .then(result => {
+            .then((result) => {
                 console.log(result)
+                navigate(`${location.state ? location.state : '/'}`)
                 notify()
             })
             .catch((error) => {

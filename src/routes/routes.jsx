@@ -9,6 +9,7 @@ import SignUp from "../pages/SignUp"
 import ErrorPage from "../pages/ErrorPage"
 import AuthLayout from "../layouts/AuthLayout";
 import DetailsTask from "../components/DetailsTask/DetailsTask";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
     {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'add-task',
-                Component: AddTask,
+                element: <PrivateRoutes><AddTask></AddTask></PrivateRoutes>,
                 loader: () => fetch('http://localhost:3000/users')
             },
             {
@@ -31,12 +32,12 @@ const router = createBrowserRouter([
             },
             {
                 path: 'details-task/:id',
-                Component: DetailsTask,
-                loader: ({params}) => fetch(`http://localhost:3000/tasks/${params.id}`)
+                element: <PrivateRoutes><DetailsTask></DetailsTask></PrivateRoutes>,
+                loader: ({ params }) => fetch(`http://localhost:3000/tasks/${params.id}`)
             },
             {
                 path: 'my-posted-task',
-                Component: MyPostedTasks
+                element: <PrivateRoutes><MyPostedTasks></MyPostedTasks></PrivateRoutes>
             }
         ]
     },
