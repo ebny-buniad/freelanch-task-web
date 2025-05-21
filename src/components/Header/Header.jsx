@@ -4,9 +4,8 @@ import AuthContext from '../../Context/AuthContext';
 
 const Header = () => {
 
-    const { googleUser, logOut } = use(AuthContext);
-    const name = googleUser?.displayName;
-    const profileImg = googleUser?.photoURL;
+    const { user, logOut, userPhoto, userName } = use(AuthContext);
+    // console.log(user)
 
     const handelLogOut = () => {
         logOut();
@@ -41,17 +40,17 @@ const Header = () => {
                         </ul>
                     </div>
                     <div className="navbar-end gap-3">
-                        
+
 
                         {
-                            googleUser && <>
+                            user && <>
                                 <div className="flex gap-2">
                                     <div className="dropdown dropdown-end">
                                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                             <div className="w-10 rounded-full">
                                                 <img
                                                     alt="User"
-                                                    src={profileImg} />
+                                                    src={`${userPhoto ? userPhoto : user.photoURL}`} />
                                             </div>
                                         </div>
                                         <ul
@@ -60,8 +59,11 @@ const Header = () => {
                                             <li>
                                                 <a className="justify-between">
                                                     Profile
-                                                    <span className="badge">{name}</span>
+                                                    <span className="badge">{user.displayName || userName}</span>
                                                 </a>
+                                            </li>
+                                            <li>
+                                                <p>{user.email}</p>
                                             </li>
                                             <li className='btn' onClick={handelLogOut}>Logout</li>
                                         </ul>
@@ -71,7 +73,7 @@ const Header = () => {
                         }
 
                         {
-                            googleUser ? '' : <>
+                            user ? '' : <>
                                 <NavLink to='/auth/login' className="">Log in</NavLink>
                                 <NavLink to='/auth/sign-up' className="btn font-normal bg-green-600 border-0 rounded-xl text-white">Sign Up</NavLink>
                             </>

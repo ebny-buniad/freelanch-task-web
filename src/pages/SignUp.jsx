@@ -5,7 +5,7 @@ import AuthContext from '../Context/AuthContext';
 import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const { createUser, signUpWithGoogle, setRegUser } = use(AuthContext);
+    const { createUser, signUpWithGoogle, setUser, setUserPhoto, setUserName } = use(AuthContext);
 
     const [passwordError, setPasswordError] = useState(false);
     const navigate = useNavigate();
@@ -34,22 +34,25 @@ const SignUp = () => {
     const handelSignUp = (e) => {
         e.preventDefault();
         const form = e.target;
-        const formData = new FormData(form)
-        const { email, password, ...userInfo } = Object.fromEntries(formData);
+        const name = form.name.value;
+        const email = form.email.value;
+        const photo = form.photo.value;
+        const password = form.password.value;
 
-        const reg_user = { email, ...userInfo }
-        setRegUser(reg_user)
+        setUserName(name)
+        setUserPhoto(photo)
 
+
+        const userData = { name, email, photo }
 
         const passwordRegex = /(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+
         if (passwordRegex.test(password) === false) {
             return setPasswordError('worng password')
         }
 
         createUser(email, password)
             .then(() => {
-                const userData = { email, ...userInfo }
-
 
                 // Send User DB
 

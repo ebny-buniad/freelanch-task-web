@@ -4,14 +4,14 @@ import { Navigate, useLocation } from 'react-router';
 import Spinner from '../components/Spinner/Spinner';
 
 const PrivateRoutes = ({ children }) => {
-    const { regUser, googleUser, loading } = use(AuthContext);
+    const { user, loading } = use(AuthContext);
     const location = useLocation();
 
     if(loading){
         return <Spinner></Spinner>
     }
 
-    if (!googleUser && !regUser) {
+    if (!user) {
         return <Navigate state={location.pathname} to='/auth/login'></Navigate>
     }
 

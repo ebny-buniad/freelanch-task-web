@@ -4,17 +4,17 @@ import AuthContext from '../Context/AuthContext';
 import MyTaskCard from '../components/MyTaskCard/MyTaskCard';
 
 const MyPostedTask = () => {
-    const { regUser, googleUser } = use(AuthContext);
+    const { user } = use(AuthContext);
     const postedTasks = useLoaderData();
     const [myTasks, setMyTasks] = useState([])
 
     useEffect(() => {
-        const findMyTasks = postedTasks.filter((task) => task.email === googleUser.email || regUser)
+        const findMyTasks = postedTasks.filter((task) => task.email === user.email)
         if (findMyTasks) {
             setMyTasks(findMyTasks);
         }
 
-    }, [postedTasks, googleUser, regUser])
+    }, [postedTasks, user])
 
 
     return (

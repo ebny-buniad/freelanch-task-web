@@ -1,14 +1,13 @@
-import React from 'react';
-import { useLoaderData } from 'react-router';
+import React, { use } from 'react';
+import { useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import AuthContext from '../../Context/AuthContext';
 
 const UpdateTask = () => {
     const loadTaskDetails = useLoaderData();
-
-
-    const { title, category, description, deadline, budget, _id } = loadTaskDetails
-
+    const { user, userName } = use(AuthContext);
+    const { title, category, description, deadline, budget, _id } = loadTaskDetails;
+    const navigate = useNavigate()
 
     const handelUpdate = (e) => {
         e.preventDefault();
@@ -22,7 +21,7 @@ const UpdateTask = () => {
         const name = form.name.value;
 
         const taskDetails = { title, category, description, deadline, budget, email, name };
-        console.log(taskDetails);
+
 
         fetch(`http://localhost:3000/tasks/${_id}`, {
             method: 'PUT',
@@ -32,8 +31,17 @@ const UpdateTask = () => {
             body: JSON.stringify(taskDetails)
         })
             .then(res => res.json())
-            .then((data) => {
-                console.log(data)
+            .then(() => {
+                Swal.fire({
+                    position: "enter center",
+                    icon: "success",
+                    title: "Updated task successfully!",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                setTimeout(() => {
+                    navigate('/my-posted-task')
+                }, 2000);
             })
     }
 
@@ -106,8 +114,7 @@ const UpdateTask = () => {
                     <input
                         type="email"
                         name='email'
-                        // value={googleUser?.email}
-
+                        value={user?.email}
                         className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-green-500"
                     />
                 </div>
@@ -117,8 +124,7 @@ const UpdateTask = () => {
                     <input
                         name='name'
                         type="text"
-                        // value={googleUser?.displayName}
-
+                        value={user?.displayName || userName}
                         className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-green-500"
                     />
                 </div>

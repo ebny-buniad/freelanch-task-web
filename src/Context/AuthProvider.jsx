@@ -5,8 +5,11 @@ import { auth } from '../../firebase.init';
 
 
 const AuthProvider = ({ children }) => {
-    const [loading, setLoading] = useState(true)
-    const [googleUser, setGoogleUser] = useState(null)
+    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState(null);
+
+    console.log('Current User is', user)
+
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -27,10 +30,9 @@ const AuthProvider = ({ children }) => {
 
     // Get Current Login User --
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setGoogleUser(user);
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
             setLoading(false)
-
 
             return () => {
                 unsubscribe();
@@ -46,25 +48,26 @@ const AuthProvider = ({ children }) => {
     }
 
 
-    const [regUser, setRegUser] = useState(null)
-    // console.log(regUser.name)
-
     // Bid Counts
     const [bidCount, setBidCount] = useState(0);
-
+    const [userName, setUserName] = useState('');
+    const [userPhoto, setUserPhoto] = useState('')
 
 
     const contextValus = {
         createUser,
         loginUser,
-        googleUser,
+        user,
         signUpWithGoogle,
         logOut,
-        regUser,
-        setRegUser,
         bidCount,
         setBidCount,
         loading,
+        setUser,
+        userName,
+        setUserName,
+        userPhoto,
+        setUserPhoto
     }
 
 

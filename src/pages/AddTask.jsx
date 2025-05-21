@@ -1,28 +1,11 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { use } from 'react';
 import AuthContext from '../Context/AuthContext';
 import Swal from 'sweetalert2';
-import { useLoaderData, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const AddTask = () => {
-    const { regUser, googleUser } = use(AuthContext);
-    const [currentUser, setCurrentUser] = useState(null);
+    const { user, userName } = use(AuthContext);
     const navigate = useNavigate()
-
-    // const allUsersData = useLoaderData();
-
-    console.log('Current User is :', regUser)
-    console.log('Current User is :', googleUser)
-
-
-    // useEffect(() => {
-    //     const myData = allUsersData.find(user => user.email === regUser);
-    //     if (myData) {
-    //         setCurrentUser(myData);
-    //     }
-    // }, [allUsersData, regUser]);
-
-    // console.log('Current User Data',currentUser)
-    // console.log('Current User Data',currentUser)
 
 
     const handelAddTask = (e) => {
@@ -126,7 +109,7 @@ const AddTask = () => {
                     <input
                         type="email"
                         name='email'
-                        value={googleUser?.email}
+                        value={user?.email}
                         readOnly
                         className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-green-500"
                     />
@@ -137,7 +120,7 @@ const AddTask = () => {
                     <input
                         name='name'
                         type="text"
-                        value={googleUser?.displayName || regUser?.name}
+                        value={user?.displayName || userName}
                         readOnly
                         className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-green-500"
                     />
