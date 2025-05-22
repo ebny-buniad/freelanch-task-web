@@ -11,7 +11,7 @@ const Hero = () => {
                 <div className='grid xl:grid-cols-2 h-[700px] items-center'>
                     <div className='col-span-1 p-10'>
                         <h1 className='text-5xl font-semibold leading-13 mb-5'>
-                            Connecting clients in need to freelancers who deliver{' '}
+                            Connecting clients in need to freelancers who deliver <br />{' '}
                             <span style={{ color: '#00a63d', fontWeight: 'bold' }}>
                                 {/* Style will be inherited from the parent element */}
                                 <Typewriter
@@ -26,7 +26,7 @@ const Hero = () => {
                             </span>
                         </h1>
 
-                        <Link to='/' className=' py-2 px-10 rounded-full button'>Browse Tasks</Link>
+                        <Link to='/browse-task' className=' py-2 px-10 rounded-full button'>Browse Tasks</Link>
                     </div>
                 </div>
             </div>

@@ -42,7 +42,7 @@ const MyTaskCard = ({ tasks, myTasks, setMyTasks }) => {
     }
 
     return (
-        <tbody>
+        <tbody className='border w-12/12 overflow-scroll'>
             <tr>
                 <td>{title}</td>
                 <td>{category}</td>

@@ -5,7 +5,7 @@ import AuthContext from '../Context/AuthContext';
 import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const { createUser, signUpWithGoogle, setUser, setUserPhoto, setUserName } = use(AuthContext);
+    const { createUser, signUpWithGoogle, setUserPhoto, setUserName } = use(AuthContext);
 
     const [passwordError, setPasswordError] = useState(false);
     const navigate = useNavigate();
