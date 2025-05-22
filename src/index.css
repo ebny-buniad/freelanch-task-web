@@ -7,7 +7,7 @@ body {
 }
 
 #hero-bg{
-  background-image: url('https://i.postimg.cc/vB1C5YqM/fernando-hernandez-l-Vu-V7-Acf-Or-Y-unsplash.jpg');
+  background-image: url('./assets/bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;

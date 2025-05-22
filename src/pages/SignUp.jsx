@@ -48,7 +48,8 @@ const SignUp = () => {
         const passwordRegex = /(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
         if (passwordRegex.test(password) === false) {
-            return setPasswordError('worng password')
+            setPasswordError('worng password');
+            return;
         }
 
         createUser(email, password)
@@ -56,7 +57,7 @@ const SignUp = () => {
 
                 // Send User DB
 
-                fetch('http://localhost:3000/users', {
+                fetch('https://upwork-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

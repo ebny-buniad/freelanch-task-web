@@ -1,12 +1,22 @@
-import React, { use } from 'react';
+import React, { use, useEffect } from 'react';
 import AuthContext from '../Context/AuthContext';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 
 const AddTask = () => {
-    const { user, userName } = use(AuthContext);
-    const navigate = useNavigate()
+    const { user, setMyInfo, myInfo } = use(AuthContext);
+    console.log(user.email)
+    const allUsers = useLoaderData();
 
+    useEffect(() => {
+        const myData = allUsers.find((oneUser) => oneUser.email === user.email);
+        if (myData) {
+            setMyInfo(myData)
+        }
+    }, [allUsers, user, setMyInfo])
+
+
+    const navigate = useNavigate()
 
     const handelAddTask = (e) => {
         e.preventDefault();
@@ -20,9 +30,8 @@ const AddTask = () => {
         const name = form.name.value;
 
         const taskDetails = { title, category, description, deadline, budget, email, name };
-        console.log(taskDetails);
 
-        fetch('http://localhost:3000/tasks', {
+        fetch('https://upwork-server.vercel.app/tasks', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -120,7 +129,7 @@ const AddTask = () => {
                     <input
                         name='name'
                         type="text"
-                        value={user?.displayName || userName}
+                        value={user.displayName || myInfo?.name}
                         readOnly
                         className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-green-500"
                     />

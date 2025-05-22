@@ -8,7 +8,7 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
 
-    console.log('Current User is', user)
+    // console.log('Current User is', user)
 
 
     const createUser = (email, password) => {
@@ -52,6 +52,8 @@ const AuthProvider = ({ children }) => {
     const [bidCount, setBidCount] = useState(0);
     const [userName, setUserName] = useState('');
     const [userPhoto, setUserPhoto] = useState('')
+    const [myInfo, setMyInfo] = useState(null);
+    console.log(myInfo)
 
 
     const contextValus = {
@@ -67,7 +69,9 @@ const AuthProvider = ({ children }) => {
         userName,
         setUserName,
         userPhoto,
-        setUserPhoto
+        setUserPhoto,
+        setMyInfo,
+        myInfo
     }
 
 

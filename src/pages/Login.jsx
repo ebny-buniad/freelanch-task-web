@@ -2,12 +2,12 @@ import { FcGoogle } from "react-icons/fc";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { CiUser } from "react-icons/ci";
 import { Link, useLocation, useNavigate } from "react-router";
-import { use } from "react";
+import { use, useState } from "react";
 import AuthContext from "../Context/AuthContext";
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function Login() {
-
+    const [loginError, setLoginError] = useState('')
     const { loginUser, signUpWithGoogle } = use(AuthContext);
 
     const notify = () => toast.success("Login Succssful!");
@@ -34,17 +34,13 @@ export default function Login() {
         const password = form.password.value;
 
         loginUser(email, password)
-            .then((result) => {
-                console.log(result)
+            .then(() => {
                 navigate(`${location.state ? location.state : '/'}`)
                 notify()
             })
             .catch((error) => {
-                console.log(error)
+                setLoginError(error)
             })
-
-        console.log(email, password)
-
     }
 
 
@@ -54,7 +50,7 @@ export default function Login() {
 
 
     return (
-        <div className="flex my-20 items-center justify-center bg-gray-50 px-4">
+        <div className="flex my-20 items-center justify-center px-4">
             <div className="w-full px-15 py-10 max-w-lg bg-white border border-gray-200 rounded-lg">
                 <h2 className="text-2xl font-semibold text-center pb-10">Log in to Upwork</h2>
 
@@ -81,7 +77,11 @@ export default function Login() {
                             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-500"
                         />
                     </div>
-
+                    <p>
+                        {
+                            loginError ? <><p className="text-red-400 pb-3">Email or password is wrong</p></> : ''
+                        }
+                    </p>
                     <button className="w-full cursor-pointer bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md mb-4">
                         Continue
                     </button>

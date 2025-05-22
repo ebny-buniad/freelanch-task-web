@@ -4,7 +4,7 @@ import AuthContext from '../../Context/AuthContext';
 
 const Header = () => {
 
-    const { user, logOut, userPhoto, userName } = use(AuthContext);
+    const { user, logOut, userPhoto, userName , myInfo } = use(AuthContext);
     // console.log(user)
 
     const handelLogOut = () => {
@@ -50,7 +50,7 @@ const Header = () => {
                                             <div className="w-10 rounded-full">
                                                 <img
                                                     alt="User"
-                                                    src={`${userPhoto ? userPhoto : user.photoURL}`} />
+                                                    src={`${myInfo ? myInfo?.photo : user.photoURL}`} />
                                             </div>
                                         </div>
                                         <ul
@@ -59,7 +59,7 @@ const Header = () => {
                                             <li>
                                                 <a className="justify-between">
                                                     Profile
-                                                    <span className="badge">{user.displayName || userName}</span>
+                                                    <span className="badge">{user.displayName || myInfo?.name}</span>
                                                 </a>
                                             </li>
                                             <li>

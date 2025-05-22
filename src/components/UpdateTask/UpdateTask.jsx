@@ -23,7 +23,7 @@ const UpdateTask = () => {
         const taskDetails = { title, category, description, deadline, budget, email, name };
 
 
-        fetch(`http://localhost:3000/tasks/${_id}`, {
+        fetch(`https://upwork-server.vercel.app/tasks/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
