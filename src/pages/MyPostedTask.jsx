@@ -20,14 +20,15 @@ const MyPostedTask = () => {
     return (
         <div className='lg:w-9/12 mx-auto pb-10'>
             <h3 className='text-2xl font-semibold text-gray-400 my-5'>My Posted Tasks</h3>
-            <div className="overflow-x-auto">
-                <table className="table">
+            <div className=" w-full overflow-auto">
+                <table className="table w-[1500px]">
                     <thead>
                         <tr>
                             <th>Tasks</th>
                             <th>Category</th>
                             <th>Budget</th>
                             <th>Dedline</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     {

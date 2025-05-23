@@ -20,32 +20,32 @@ const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home,
-                loader: () => fetch('https://upwork-server.vercel.app/dedline/tasks')
+                loader: () => fetch('http://localhost:3000/dedline/tasks')
             },
             {
                 path: 'add-task',
                 element: <PrivateRoutes><AddTask></AddTask></PrivateRoutes>,
-                loader: () => fetch('https://upwork-server.vercel.app/users')
+                loader: () => fetch('http://localhost:3000/users')
             },
             {
                 path: 'browse-task',
                 Component: BrowseTask,
-                loader: () => fetch('https://upwork-server.vercel.app/tasks')
+                loader: () => fetch('http://localhost:3000/tasks')
             },
             {
                 path: 'details-task/:id',
                 element: <PrivateRoutes><DetailsTask></DetailsTask></PrivateRoutes>,
-                loader: ({ params }) => fetch(`https://upwork-server.vercel.app/tasks/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:3000/tasks/${params.id}`)
             },
             {
                 path: 'my-posted-task',
                 element: <PrivateRoutes><MyPostedTasks></MyPostedTasks></PrivateRoutes>,
-                loader: () => fetch('https://upwork-server.vercel.app/tasks')
+                loader: () => fetch('http://localhost:3000/tasks')
             },
             {
                 path: 'update-task/:id',
                 element: <PrivateRoutes><UpdateTask></UpdateTask></PrivateRoutes>,
-                loader: ({ params }) => fetch(`https://upwork-server.vercel.app/tasks/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:3000/tasks/${params.id}`)
             }
         ]
     },
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'sign-up',
-                Component: SignUp
+                Component: SignUp,
             }
         ]
     },

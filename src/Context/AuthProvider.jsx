@@ -49,7 +49,6 @@ const AuthProvider = ({ children }) => {
 
 
     // Bid Counts
-    const [bidCount, setBidCount] = useState(0);
     const [userName, setUserName] = useState('');
     const [userPhoto, setUserPhoto] = useState('')
     const [myInfo, setMyInfo] = useState(null);
@@ -62,8 +61,6 @@ const AuthProvider = ({ children }) => {
         user,
         signUpWithGoogle,
         logOut,
-        bidCount,
-        setBidCount,
         loading,
         setUser,
         userName,

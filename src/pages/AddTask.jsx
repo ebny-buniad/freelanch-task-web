@@ -5,9 +5,7 @@ import { useLoaderData, useNavigate } from 'react-router';
 
 const AddTask = () => {
     const { user, setMyInfo, myInfo } = use(AuthContext);
-    console.log(user.email)
     const allUsers = useLoaderData();
-
     useEffect(() => {
         const myData = allUsers.find((oneUser) => oneUser.email === user.email);
         if (myData) {
@@ -28,10 +26,11 @@ const AddTask = () => {
         const budget = form.budget.value;
         const email = form.email.value;
         const name = form.name.value;
+        const bidsCount = 0;
 
-        const taskDetails = { title, category, description, deadline, budget, email, name };
+        const taskDetails = { title, category, description, deadline, budget, email, name, bidsCount };
 
-        fetch('https://upwork-server.vercel.app/tasks', {
+        fetch('http://localhost:3000/tasks', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

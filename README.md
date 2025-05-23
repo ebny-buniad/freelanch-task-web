@@ -1,12 +1,33 @@
-# React + Vite
+# 🔧 TaskFreelanceHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**TaskFreelanceHub** is a modern freelancing platform built for quick, short-term tasks. It connects individuals who need tasks done with skilled freelancers ready to take them on. Users can easily post tasks, receive bids, and collaborate efficiently based on skills, budget, and deadlines.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live URL
 
-## Expanding the ESLint configuration
+[https://upwork-clients-e2375.web.app/](https://upwork-clients-e2375.web.app/p)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Features
+
+- 📝 Post new freelance tasks with budget and deadline
+- 💼 Freelancers can browse and bid on tasks
+- 🎯 Matching system based on skills and task criteria
+- 🔒 Firebase Authentication for secure login
+- 🔔 SweetAlert for elegant alerts and notifications
+- 🧑‍💻 Responsive, fast UI using Tailwind CSS
+- 🎬 Animated typing effects using React Simple Typewriter
+
+---
+
+## ⚙️ Tech Stack
+
+### Frontend:
+- **React** – JavaScript library for building UI
+- **React Router** – For SPA navigation
+- **Tailwind CSS** – Utility-first styling
+- **Firebase** – Authentication & backend services
+- **React Simple Typewriter** – Text animation effects
+- **SweetAlert2** – Stylish modal popups and alerts

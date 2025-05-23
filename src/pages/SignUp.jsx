@@ -10,7 +10,6 @@ const SignUp = () => {
     const [passwordError, setPasswordError] = useState(false);
     const navigate = useNavigate();
 
-
     const handelSignUpGoogle = () => {
         signUpWithGoogle()
             .then(() => {
@@ -57,7 +56,7 @@ const SignUp = () => {
 
                 // Send User DB
 
-                fetch('https://upwork-server.vercel.app/users', {
+                fetch('http://localhost:3000/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
