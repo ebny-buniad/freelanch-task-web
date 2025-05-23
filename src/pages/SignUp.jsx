@@ -5,7 +5,7 @@ import AuthContext from '../Context/AuthContext';
 import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const { createUser, signUpWithGoogle, setUserPhoto, setUserName } = use(AuthContext);
+    const { createUser, signUpWithGoogle } = use(AuthContext);
 
     const [passwordError, setPasswordError] = useState(false);
     const navigate = useNavigate();
@@ -38,8 +38,6 @@ const SignUp = () => {
         const photo = form.photo.value;
         const password = form.password.value;
 
-        setUserName(name)
-        setUserPhoto(photo)
 
 
         const userData = { name, email, photo }
@@ -56,7 +54,7 @@ const SignUp = () => {
 
                 // Send User DB
 
-                fetch('http://localhost:3000/users', {
+                fetch('https://upwork-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

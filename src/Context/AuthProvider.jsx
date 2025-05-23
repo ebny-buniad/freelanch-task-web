@@ -47,13 +47,8 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
-
-    // Bid Counts
-    const [userName, setUserName] = useState('');
-    const [userPhoto, setUserPhoto] = useState('')
     const [myInfo, setMyInfo] = useState(null);
-    console.log(myInfo)
-
+    // console.log(myInfo)
 
     const contextValus = {
         createUser,
@@ -63,14 +58,9 @@ const AuthProvider = ({ children }) => {
         logOut,
         loading,
         setUser,
-        userName,
-        setUserName,
-        userPhoto,
-        setUserPhoto,
         setMyInfo,
         myInfo
     }
-
 
     return <AuthContext value={contextValus}>
         {children}

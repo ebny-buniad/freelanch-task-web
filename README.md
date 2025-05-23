@@ -1,6 +1,6 @@
-# 🔧 TaskFreelanceHub
+# 🔧 Upwork
 
-**TaskFreelanceHub** is a modern freelancing platform built for quick, short-term tasks. It connects individuals who need tasks done with skilled freelancers ready to take them on. Users can easily post tasks, receive bids, and collaborate efficiently based on skills, budget, and deadlines.
+**Upwork** is a modern freelancing platform built for quick, short-term tasks. It connects individuals who need tasks done with skilled freelancers ready to take them on. Users can easily post tasks, receive bids, and collaborate efficiently based on skills, budget, and deadlines.
 
 ---
 

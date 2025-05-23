@@ -27,7 +27,7 @@ const MyPostedTask = () => {
                             <th>Tasks</th>
                             <th>Category</th>
                             <th>Budget</th>
-                            <th>Dedline</th>
+                            <th>Deadline</th>
                             <th>Actions</th>
                         </tr>
                     </thead>

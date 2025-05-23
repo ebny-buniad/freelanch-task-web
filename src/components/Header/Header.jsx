@@ -4,7 +4,7 @@ import AuthContext from '../../Context/AuthContext';
 
 const Header = () => {
 
-    const { user, logOut, userPhoto, userName , myInfo } = use(AuthContext);
+    const { user, logOut, myInfo } = use(AuthContext);
     // console.log(user)
 
     const handelLogOut = () => {
@@ -50,7 +50,7 @@ const Header = () => {
                                             <div className="w-10 rounded-full">
                                                 <img
                                                     alt="User"
-                                                    src={`${myInfo ? myInfo?.photo : user.photoURL}`} />
+                                                    src={`${myInfo ? myInfo?.photo : user.photoURL}`} referrerPolicy="no-referrer" />
                                             </div>
                                         </div>
                                         <ul

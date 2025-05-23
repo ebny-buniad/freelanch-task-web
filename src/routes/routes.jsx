@@ -11,6 +11,7 @@ import AuthLayout from "../layouts/AuthLayout";
 import DetailsTask from "../components/DetailsTask/DetailsTask";
 import PrivateRoutes from "./PrivateRoutes";
 import UpdateTask from "../components/UpdateTask/UpdateTask";
+import Spinner from "../components/Spinner/Spinner";
 
 const router = createBrowserRouter([
     {
@@ -20,32 +21,33 @@ const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home,
-                loader: () => fetch('http://localhost:3000/dedline/tasks')
+                loader: () => fetch('https://upwork-server.vercel.app/dedline/tasks'),
+                hydrateFallbackElement: <Spinner></Spinner>
             },
             {
                 path: 'add-task',
                 element: <PrivateRoutes><AddTask></AddTask></PrivateRoutes>,
-                loader: () => fetch('http://localhost:3000/users')
+                loader: () => fetch('https://upwork-server.vercel.app/users')
             },
             {
                 path: 'browse-task',
                 Component: BrowseTask,
-                loader: () => fetch('http://localhost:3000/tasks')
+                loader: () => fetch('https://upwork-server.vercel.app/tasks')
             },
             {
                 path: 'details-task/:id',
                 element: <PrivateRoutes><DetailsTask></DetailsTask></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:3000/tasks/${params.id}`)
+                loader: ({ params }) => fetch(`https://upwork-server.vercel.app/tasks/${params.id}`)
             },
             {
                 path: 'my-posted-task',
                 element: <PrivateRoutes><MyPostedTasks></MyPostedTasks></PrivateRoutes>,
-                loader: () => fetch('http://localhost:3000/tasks')
+                loader: () => fetch('https://upwork-server.vercel.app/tasks')
             },
             {
                 path: 'update-task/:id',
                 element: <PrivateRoutes><UpdateTask></UpdateTask></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:3000/tasks/${params.id}`)
+                loader: ({ params }) => fetch(`https://upwork-server.vercel.app/tasks/${params.id}`)
             }
         ]
     },
