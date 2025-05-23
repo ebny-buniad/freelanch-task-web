@@ -6,7 +6,7 @@
 
 ## 🌐 Live URL
 
-[https://upwork-clients-e2375.web.app/](https://upwork-clients-e2375.web.app/p)
+[https://upwork-clients-e2375.web.app/](https://upwork-clients-e2375.web.app/)
 
 ---
 
