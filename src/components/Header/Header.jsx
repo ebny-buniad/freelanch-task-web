@@ -4,6 +4,13 @@ import AuthContext from '../../Context/AuthContext';
 
 const Header = () => {
 
+    const navLinks = <>
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/about'>About Us</NavLink></li>
+        <li><NavLink to='/browse-task'>Browse Tasks</NavLink></li>
+        <li><NavLink to='/contact'>Contact</NavLink></li>
+    </>
+
     const { user, logOut, myInfo } = use(AuthContext);
     // console.log(user)
 
@@ -14,7 +21,7 @@ const Header = () => {
     return (
         <div>
             <nav>
-                <div className="navbar">
+                <div className="navbar lg:w-9/12 mx-auto ">
                     <div className="navbar-start">
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -23,20 +30,14 @@ const Header = () => {
                             <ul
                                 tabIndex={0}
                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                                <li><NavLink to='/'>Home</NavLink></li>
-                                <li><NavLink to='/add-task'>Add Task</NavLink></li>
-                                <li><NavLink to='/browse-task'>Browse Tasks</NavLink></li>
-                                <li><NavLink to='/my-posted-task'>My Posted Tasks</NavLink></li>
+                                {navLinks}
                             </ul>
                         </div>
                         <img className='w-25' src="https://image.status.io/z6aeO6kAGsAG.png" alt="" />
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal px-1">
-                            <li><NavLink to='/'>Home</NavLink></li>
-                            <li><NavLink to='/add-task'>Add Task</NavLink></li>
-                            <li><NavLink to='/browse-task'>Browse Tasks</NavLink></li>
-                            <li><NavLink to='/my-posted-task'>My Posted Tasks</NavLink></li>
+                            {navLinks}
                         </ul>
                     </div>
                     <div className="navbar-end gap-3">
@@ -65,7 +66,10 @@ const Header = () => {
                                             <li>
                                                 <p>{user.email}</p>
                                             </li>
-                                            <li className='btn' onClick={handelLogOut}>Logout</li>
+                                            <li>
+                                                <NavLink to='/dashboard'><p>Dashboard</p></NavLink>
+                                            </li>
+                                            <li className='btn mt-5' onClick={handelLogOut}>Logout</li>
                                         </ul>
                                     </div>
                                 </div>

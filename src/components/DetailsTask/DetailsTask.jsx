@@ -9,7 +9,7 @@ const DetailsTask = () => {
     const navigate = useNavigate()
 
     const handelBidTask = (id) => {
-        fetch(`https://upwork-server.vercel.app/tasks/${id}`, {
+        fetch(`http://localhost:3000/tasks/${id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())

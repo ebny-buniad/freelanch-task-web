@@ -7,7 +7,7 @@ import { MdOutlineWbSunny } from "react-icons/md";
 import { useLoaderData } from 'react-router';
 import AuthContext from '../Context/AuthContext';
 
-const allUsersData = fetch('https://upwork-server.vercel.app/users').then(res => res.json())
+const allUsersData = fetch('http://localhost:3000/users').then(res => res.json())
 
 const Home = () => {
     const dedlineTasks = useLoaderData();

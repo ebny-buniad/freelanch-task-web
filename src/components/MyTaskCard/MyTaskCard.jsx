@@ -21,7 +21,7 @@ const MyTaskCard = ({ tasks, myTasks, setMyTasks }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`https://upwork-server.vercel.app/tasks/${_id}`, {
+                fetch(`http://localhost:3000/tasks/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

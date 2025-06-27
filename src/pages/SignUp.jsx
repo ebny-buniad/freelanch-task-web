@@ -54,7 +54,7 @@ const SignUp = () => {
 
                 // Send User DB
 
-                fetch('https://upwork-server.vercel.app/users', {
+                fetch('http://localhost:3000/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

@@ -12,6 +12,11 @@ import DetailsTask from "../components/DetailsTask/DetailsTask";
 import PrivateRoutes from "./PrivateRoutes";
 import UpdateTask from "../components/UpdateTask/UpdateTask";
 import Spinner from "../components/Spinner/Spinner";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Contact from "../pages/Contact";
+import About from "../pages/About";
+import MyAccount from "../pages/Dashboard/MyAccount/MyAccount";
+import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 
 const router = createBrowserRouter([
     {
@@ -21,33 +26,31 @@ const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home,
-                loader: () => fetch('https://upwork-server.vercel.app/dedline/tasks'),
+                loader: () => fetch('http://localhost:3000/dedline/tasks'),
                 hydrateFallbackElement: <Spinner></Spinner>
-            },
-            {
-                path: 'add-task',
-                element: <PrivateRoutes><AddTask></AddTask></PrivateRoutes>,
-                loader: () => fetch('https://upwork-server.vercel.app/users')
             },
             {
                 path: 'browse-task',
                 Component: BrowseTask,
-                loader: () => fetch('https://upwork-server.vercel.app/tasks')
+                loader: () => fetch('http://localhost:3000/tasks')
             },
             {
                 path: 'details-task/:id',
                 element: <PrivateRoutes><DetailsTask></DetailsTask></PrivateRoutes>,
-                loader: ({ params }) => fetch(`https://upwork-server.vercel.app/tasks/${params.id}`)
-            },
-            {
-                path: 'my-posted-task',
-                element: <PrivateRoutes><MyPostedTasks></MyPostedTasks></PrivateRoutes>,
-                loader: () => fetch('https://upwork-server.vercel.app/tasks')
+                loader: ({ params }) => fetch(`http://localhost:3000/tasks/${params.id}`)
             },
             {
                 path: 'update-task/:id',
                 element: <PrivateRoutes><UpdateTask></UpdateTask></PrivateRoutes>,
-                loader: ({ params }) => fetch(`https://upwork-server.vercel.app/tasks/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:3000/tasks/${params.id}`)
+            },
+            {
+                path: 'about',
+                Component: About
+            },
+            {
+                path: 'contact',
+                Component: Contact
             }
         ]
     },
@@ -62,6 +65,30 @@ const router = createBrowserRouter([
             {
                 path: 'sign-up',
                 Component: SignUp,
+            }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
+        children: [
+            {
+                index: true,
+                Component: DashboardHome
+            },
+            {
+                path: 'my-account',
+                Component: MyAccount
+            },
+            {
+                path: 'add-task',
+                element: <PrivateRoutes><AddTask></AddTask></PrivateRoutes>,
+                loader: () => fetch('http://localhost:3000/users')
+            },
+            {
+                path: 'my-posted-task',
+                element: <PrivateRoutes><MyPostedTasks></MyPostedTasks></PrivateRoutes>,
+                loader: () => fetch('http://localhost:3000/tasks')
             }
         ]
     },
